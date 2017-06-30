@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Article</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+       
+        <td><%= post.title %></td>
+        <td><%= post.article %></td>
+        <td><%= post.Image %></td>
+        
+<!--
+I tried to recognise user by user i.d and email below but it did not work, may need to think of an alternitive to do this as I do not have a good feeling about the security in this. Could   I change my ip and skip login by url?
+-->
+        
+        <td><%= link_to 'Continue Reading', post %></td>
+        
+      <% if post.user == current_user %>
+      
+        <td><%= link_to 'Edit your post', edit_post_path(post) %></td>
+        <td><%= link_to 'Delete your post', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+      <% end %>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
